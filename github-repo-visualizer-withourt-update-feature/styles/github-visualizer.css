@@ -1,0 +1,273 @@
+/* Modern styling for GitHub Visualizer */
+
+/* Tree visualization styles */
+.node circle {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+}
+
+.node:hover circle {
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+  transform: scale(1.2);
+}
+
+.node:hover .radiating-circle {
+  animation-play_state: running;
+  filter: drop-shadow(0 0 3px rgba(139, 92, 246, 0.5));
+}
+
+.node text {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0.85;
+  font-weight: 500;
+}
+
+.node:hover text {
+  font-weight: 600;
+  opacity: 1;
+  transform: translateY(-1px);
+}
+
+/* Animation for links */
+.link {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: dash 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Modern node styling */
+.node-branch circle {
+  fill: #8b5cf6; /* Violet for directories */
+}
+
+.node-leaf circle {
+  fill: #10b981; /* Emerald for files */
+}
+
+.node-collapsed circle {
+  fill: #f59e0b; /* Amber for collapsed nodes */
+}
+
+/* SVG background pattern */
+.visualization-bg {
+  background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
+  background-size: 20px 20px;
+  background-position: -10px -10px;
+  transition: background 0.3s ease;
+}
+
+/* Dark mode adjustments */
+.dark .visualization-bg {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+}
+
+.dark .node text {
+  fill: #e5e7eb;
+  stroke: #1f2937;
+  stroke-width: 0.3px;
+}
+
+/* Ensure theme transitions are smooth */
+:root {
+  --transition-duration: 0.3s;
+}
+
+html {
+  transition: background-color var(--transition-duration) ease;
+}
+
+body {
+  transition: color var(--transition-duration) ease, background-color var(--transition-duration) ease;
+}
+
+/* Card hover effects */
+.card-hover-effect {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-hover-effect:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+}
+
+.dark .card-hover-effect:hover {
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3), 0 8px 10px -6px rgba(0, 0, 0, 0.2);
+}
+
+/* Pulse animation for loading states */
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Gradient text */
+.gradient-text {
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  background-image: linear-gradient(to right, #8b5cf6, #6366f1);
+}
+
+.dark .gradient-text {
+  background-image: linear-gradient(to right, #a78bfa, #818cf8);
+}
+
+/* Improved scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(156, 163, 175, 0.5);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(156, 163, 175, 0.7);
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: rgba(75, 85, 99, 0.5);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgba(75, 85, 99, 0.7);
+}
+
+/* Improved focus styles */
+:focus-visible {
+  outline: 2px solid #8b5cf6;
+  outline-offset: 2px;
+}
+
+.dark :focus-visible {
+  outline-color: #a78bfa;
+}
+
+/* Directory tree popup styles */
+.directory-tree-node {
+  transition: background-color 0.2s ease;
+}
+
+.directory-tree-node:hover {
+  background-color: rgba(139, 92, 246, 0.05);
+}
+
+.directory-tree-node.summarized {
+  background-color: rgba(139, 92, 246, 0.1);
+}
+
+.directory-tree-node.selected {
+  background-color: rgba(139, 92, 246, 0.15);
+}
+
+/* Progress bar animation */
+@keyframes progress-pulse {
+  0% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.6;
+  }
+}
+
+.progress-bar-animated {
+  animation: progress-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Checkbox styles */
+.checkbox-summarized {
+  opacity: 0.7;
+}
+
+.checkbox-refresh {
+  border-color: #f59e0b;
+  background-color: rgba(245, 158, 11, 0.1);
+}
+
+/* Add this new animation for radiating circles after the existing animations */
+
+@keyframes radiating-pulse {
+  0% {
+    stroke-dasharray: 2, 2;
+    stroke-width: 2;
+    opacity: 0.8;
+  }
+  50% {
+    stroke-dasharray: 3, 3;
+    stroke-width: 2.5;
+    opacity: 1;
+  }
+  100% {
+    stroke-dasharray: 2, 2;
+    stroke-width: 2;
+    opacity: 0.8;
+  }
+}
+
+.radiating-circle {
+  animation: radiating-pulse 2s ease-in-out infinite;
+}
+
+/* Chat interface styles */
+.chat-message {
+  transition: all 0.3s ease;
+  animation: message-fade-in 0.3s ease forwards;
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+@keyframes message-fade-in {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.chat-message-user {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(124, 58, 237, 0.2));
+  border-left: 3px solid rgba(139, 92, 246, 0.5);
+}
+
+.chat-message-assistant {
+  background: linear-gradient(135deg, rgba(229, 231, 235, 0.5), rgba(209, 213, 219, 0.3));
+  border-left: 3px solid rgba(156, 163, 175, 0.5);
+}
+
+.dark .chat-message-assistant {
+  background: linear-gradient(135deg, rgba(31, 41, 55, 0.5), rgba(17, 24, 39, 0.3));
+  border-left: 3px solid rgba(75, 85, 99, 0.5);
+}
+
+.chat-input {
+  transition: all 0.2s ease;
+  border: 2px solid transparent;
+}
+
+.chat-input:focus {
+  border-color: rgba(139, 92, 246, 0.5);
+  box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.25);
+}
